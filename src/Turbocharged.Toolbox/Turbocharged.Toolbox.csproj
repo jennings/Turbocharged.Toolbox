@@ -3,5 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Turbocharged.Toolbox</PackageId>
+    <Version>0.1.0$(VersionSuffix)</Version>
+    <Authors>Stephen Jennings</Authors>
+    <Description>A junk drawer of miscellaneous "core" types.</Description>
+  </PropertyGroup>
+
 
 </Project>
