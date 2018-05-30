@@ -99,7 +99,7 @@ namespace Turbocharged.Toolbox
             return false;
         }
 
-        public T Unwrap(T onError)
+        public T UnwrapOr(T onError)
         {
             ThrowIfUnitialized();
             if (HasValue)
@@ -109,7 +109,7 @@ namespace Turbocharged.Toolbox
             return onError;
         }
 
-        public T Unwrap(Func<TError, T> onError)
+        public T UnwrapOr(Func<TError, T> onError)
         {
             ThrowIfUnitialized();
             if (HasValue)

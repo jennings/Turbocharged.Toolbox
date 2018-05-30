@@ -45,7 +45,7 @@ namespace Turbocharged.Toolbox.Tests
         public void Result_unwraps_values_successfully()
         {
             Result<int, string> result = IntValue;
-            var unwrapped = result.Unwrap(0);
+            var unwrapped = result.UnwrapOr(0);
             Assert.Equal(IntValue, unwrapped);
         }
 
@@ -53,7 +53,7 @@ namespace Turbocharged.Toolbox.Tests
         public void Result_unwraps_errors_successfully()
         {
             Result<int, string> result = StringValue;
-            var unwrapped = result.Unwrap(str => 2);
+            var unwrapped = result.UnwrapOr(str => 2);
             Assert.Equal(2, unwrapped);
         }
 
