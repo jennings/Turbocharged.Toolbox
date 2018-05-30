@@ -24,6 +24,12 @@ namespace Turbocharged.Toolbox
         }
 
         /// <summary>
+        /// Returns a value indicating whether the action threw an exception
+        /// when it was called.
+        /// </summary>
+        public bool Poisoned => _error != null;
+
+        /// <summary>
         /// Executes the given action if this is the first time <c>Do</c> has
         /// been called. Future calls will return without invoking the action.
         /// If the action is executed and throws, this instance will be

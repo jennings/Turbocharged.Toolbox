@@ -52,5 +52,25 @@ namespace Turbocharged.Toolbox.Tests
             Assert.Same(thrown.InnerException, expected);
             Assert.False(invoked);
         }
+
+        [Fact]
+        public void Once_indicates_not_poisoned_for_success()
+        {
+            var once = new Once(() => { });
+
+            Assert.False(once.Poisoned);
+            once.Execute();
+            Assert.False(once.Poisoned);
+        }
+
+        [Fact]
+        public void Once_indicates_poisoned_after_a_failure()
+        {
+            var once = new Once(() => { throw new Exception(); });
+
+            Assert.False(once.Poisoned);
+            Assert.Throws<PoisonException>(() => once.Execute());
+            Assert.True(once.Poisoned);
+        }
     }
 }

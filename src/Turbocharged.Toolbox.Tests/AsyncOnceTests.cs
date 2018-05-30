@@ -55,5 +55,25 @@ namespace Turbocharged.Toolbox.Tests
             Assert.Same(thrown.InnerException, expected);
             Assert.False(invoked);
         }
+
+        [Fact]
+        public async Task AsyncOnce_indicates_not_poisoned_for_success()
+        {
+            var once = new AsyncOnce(async () => { await Task.Yield(); });
+
+            Assert.False(once.Poisoned);
+            await once.ExecuteAsync();
+            Assert.False(once.Poisoned);
+        }
+
+        [Fact]
+        public async Task AsyncOnce_indicates_poisoned_after_a_failure()
+        {
+            var once = new AsyncOnce(async () => { await Task.Yield(); throw new Exception(); });
+
+            Assert.False(once.Poisoned);
+            await Assert.ThrowsAsync<PoisonException>(() => once.ExecuteAsync());
+            Assert.True(once.Poisoned);
+        }
     }
 }
