@@ -1,0 +1,19 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+
+before_build:
+  - cmd: dotnet --info
+  - cmd: dotnet restore
+
+build:
+  verbosity: minimal
+
+test_script:
+  - cmd: dotnet test src/Turbocharged.Toolbox.Tests/Turbocharged.Toolbox.Tests.csproj
+
+after_build:
+  - cmd: dotnet pack src/Turbocharged.Toolbox/Turbocharged.Toolbox.csproj --configuration Release
+
+artifacts:
+  - path: '**/*.nupkg'
