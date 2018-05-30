@@ -30,11 +30,11 @@ namespace Turbocharged.Toolbox
         public bool Poisoned => _error != null;
 
         /// <summary>
-        /// Executes the given action if this is the first time <c>Do</c> has
-        /// been called. Future calls will return without invoking the action.
-        /// If the action is executed and throws, this instance will be
-        /// considered poisoned and will throw every time <c>Execute</c> is
-        /// called.
+        /// Executes the given action if this is the first time
+        /// <c>ExecuteAsync</c> has been called. Future calls will return
+        /// without invoking the function. If the function is executed and
+        /// throws, this instance will be considered poisoned and will throw
+        /// every time <c>ExecuteAsync</c> is called.
         /// </summary>
         public async Task ExecuteAsync()
         {
